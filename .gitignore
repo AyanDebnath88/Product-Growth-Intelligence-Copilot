@@ -1,0 +1,18 @@
+# Python 
+__pycache__/
+*.pyc
+
+#SQLite
+*.db
+*.db-shm
+*.db-wal
+
+# VS Code
+.vscode/
+
+# Raw Data 
+data/raw/
+
+# Os Files 
+.DS_Store
+Thumbs.db
