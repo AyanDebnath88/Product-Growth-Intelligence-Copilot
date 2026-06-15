@@ -8,3 +8,227 @@
 
 
 select count(*) from order_items;
+
+-- Monthly revenue trend 
+select 
+ ROUND(sum(price), 2) as total_revenue
+ from order_items;
+
+ --- revenue 13591643.7
+ --- Average Order Value (AOV)
+select 
+ ROUND(sum(oi.price)*1.0/count(distinct oi.order_id), 2) as average_order_value
+from order_items oi;
+--- AOV 137.75
+
+--- Revenue trend over time (monthly)
+select
+    strftime('%Y-%m', o.order_purchase_timestamp) as month,
+    round(sum(oi.price), 2) as revenue
+from orders o
+join order_items oi on o.order_id = oi.order_id
+group by month
+order by month;
+
+-- Monthly revenue trend:
+
+-- 2016-09	267.36
+-- 2016-10	49507.66
+-- 2016-12	10.9
+-- 2017-01	120312.87
+-- 2017-02	247303.02
+-- 2017-03	374344.3
+-- 2017-04	359927.23
+-- 2017-05	506071.14
+-- 2017-06	433038.6
+-- 2017-07	498031.48
+-- 2017-08	573971.68
+-- 2017-09	624401.69
+-- 2017-10	664219.43
+-- 2017-11	1010271.37
+-- 2017-12	743914.17
+-- 2018-01	950030.36
+-- 2018-02	844178.71
+-- 2018-03	983213.44
+-- 2018-04	996647.75
+-- 2018-05	996517.68
+-- 2018-06	865124.31
+-- 2018-07	895507.22
+-- 2018-08	854686.33
+-- 2018-09	145.0 --
+
+-- Revenue by state
+select 
+    c.customer_state,
+    round(sum(oi.price), 2) as revenue
+from customers c 
+join orders o
+on c.customer_id = o.customer_id
+join order_items oi
+on o.order_id = oi.order_id
+group by c.customer_state
+order by revenue desc;
+limit 10;
+
+/* Revenue by state:
+customer_state	revenue
+SP	5202955.05
+RJ	1824092.67
+MG	1585308.03
+RS	750304.02
+PR	683083.76
+SC	520553.34
+BA	511349.99
+DF	302603.94
+GO	294591.95
+ES	275037.31
+PE	262788.03
+CE	227254.71
+PA	178947.81
+MT	156453.53
+MA	119648.22
+MS	116812.64
+PB	115268.08
+PI	86914.08
+RN	83034.98
+AL	80314.81
+SE	58920.85
+TO	49621.74
+RO	46140.64
+AM	22356.84
+AC	15982.95
+AP	13474.3
+RR	7829.43 */
+
+-- Top 5 categories by revenue
+select *
+from products
+limit 5;
+
+select *
+from product_category_name_translation
+limit 10;
+
+-- Top revenue generating categories
+select 
+    pct.product_category_name_english,
+    round(sum(oi.price), 2) as revenue
+    from order_items oi
+    join products p
+    on oi.product_id = p.product_id
+    join product_category_name_translation pct
+    on p.product_category_name = pct.product_category_name
+group by pct.product_category_name_english
+order by revenue desc
+limit 10;
+
+/* product_category_name_english	revenue
+health_beauty	1258681.34
+watches_gifts	1205005.68
+bed_bath_table	1036988.68
+sports_leisure	988048.97
+computers_accessories	911954.32
+furniture_decor	729762.49
+cool_stuff	635290.85
+housewares	632248.66
+auto	592720.11
+garden_tools	485256.46 */
+
+-- Revenue + Volume by category
+select 
+    pct.product_category_name_english,
+    round(sum(oi.price), 2) as revenue,
+    count(distinct oi.order_id) as order_count
+    from order_items oi
+    join products p
+    on oi.product_id = p.product_id
+    join product_category_name_translation pct
+    on p.product_category_name = pct.product_category_name
+group by pct.product_category_name_english
+order by revenue desc
+
+/* product_category_name_english	revenue	order_count
+health_beauty	1258681.34	8836
+watches_gifts	1205005.68	5624
+bed_bath_table	1036988.68	9417
+sports_leisure	988048.97	7720
+computers_accessories	911954.32	6689
+furniture_decor	729762.49	6449
+cool_stuff	635290.85	3632
+housewares	632248.66	5884
+auto	592720.11	3897
+garden_tools	485256.46	3518
+toys	483946.6	3886
+baby	411764.89	2885
+perfumery	399124.87	3162
+telephony	323667.53	4199
+office_furniture	273960.7	1273
+stationery	230943.23	2311
+computers	222963.13	181
+pet_shop	214315.41	1710
+musical_instruments	191498.88	628
+small_appliances	190648.58	630
+electronics	160246.74	2550
+consoles_games	157465.22	1062
+fashion_bags_accessories	152823.54	1864
+construction_tools_construction	144677.59	748
+luggage_accessories	140429.98	1034
+home_appliances_2	113317.74	234
+home_construction	83088.12	490
+home_appliances	80171.53	764
+agro_industry_and_commerce	72530.47	182
+furniture_living_room	68916.56	422
+fixed_telephony	59583.0	217
+home_confort	58572.04	397
+air_conditioning	55024.96	253
+audio	50688.5	350
+small_appliances_home_oven_and_coffee	47445.71	75
+books_general_interest	46856.88	512
+kitchen_dining_laundry_garden_furniture	46328.37	248
+construction_tools_lights	41080.0	244
+construction_tools_safety	40544.52	167
+industry_commerce_and_business	39669.61	235
+food	29393.41	450
+market_place	28378.47	280
+costruction_tools_garden	25715.89	194
+art	24202.64	202
+fashion_shoes	23562.77	240
+drinks	22428.7	297
+signaling_and_security	21509.23	140
+furniture_bedroom	20028.78	95
+books_technical	19096.06	260
+costruction_tools_tools	15903.95	97
+*/
+
+-- Revenue share % by category
+    with category_revenue as (
+        select 
+            pct.product_category_name_english,
+            round(sum(oi.price), 2) as revenue
+        from order_items oi
+        join products p
+        on oi.product_id = p.product_id
+        join product_category_name_translation pct
+        on p.product_category_name = pct.product_category_name
+        group by pct.product_category_name_english
+    )
+    select 
+        product_category_name_english,
+        revenue,
+        round((revenue * 100.0 / (select sum(revenue) from category_revenue)), 2) as revenue_share_percentage
+        from category_revenue
+        order by revenue_share_percentage desc
+        limit 10;
+
+        /* product_category_name_english	revenue	revenue_share_percentage
+health_beauty	1258681.34	9.39
+watches_gifts	1205005.68	8.99
+bed_bath_table	1036988.68	7.73
+sports_leisure	988048.97	7.37
+computers_accessories	911954.32	6.8
+furniture_decor	729762.49	5.44
+cool_stuff	635290.85	4.74
+housewares	632248.66	4.72
+auto	592720.11	4.42
+garden_tools	485256.46	3.62 */
+
