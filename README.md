@@ -29,7 +29,24 @@ This project demonstrates how a Data Analyst can build a complete analytics work
 
 Product-Growth-Intelligence-Copilot/
 
+<img width="4140" height="3820" alt="diagram" src="https://github.com/user-attachments/assets/522d5575-d8ab-41da-a236-b96fec25d9e5" />
+
+
+
+
 ⸻
+
+📸 Dashboard Preview
+
+<img width="1917" height="983" alt="Screenshot_Executive_Sales" src="https://github.com/user-attachments/assets/b15a7edb-15ab-402b-88d0-170eb328195a" />
+<img width="1919" height="901" alt="Screenshot_Payments" src="https://github.com/user-attachments/assets/562bf93b-d211-408c-8e7b-c1f3d15d68ba" />
+<img width="1913" height="1001" alt="Screenshot_Funnel" src="https://github.com/user-attachments/assets/06e88f68-ef4a-475f-939a-2b1d70efb75e" />
+
+
+
+
+⸻
+
 
 📊 Dashboard 1 – Executive Business Overview
 
@@ -133,18 +150,6 @@ Business Questions
 * Revenue by Category
 * Revenue by Geography
 
-⸻
-
-📸 Dashboard Preview
-
-<img width="1917" height="983" alt="Screenshot_Executive_Sales" src="https://github.com/user-attachments/assets/b15a7edb-15ab-402b-88d0-170eb328195a" />
-<img width="1919" height="901" alt="Screenshot_Payments" src="https://github.com/user-attachments/assets/562bf93b-d211-408c-8e7b-c1f3d15d68ba" />
-<img width="1913" height="1001" alt="Screenshot_Funnel" src="https://github.com/user-attachments/assets/06e88f68-ef4a-475f-939a-2b1d70efb75e" />
-
-
-
-
-⸻
 
 🔗 Live Dashboard
 
