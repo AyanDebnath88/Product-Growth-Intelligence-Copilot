@@ -64,13 +64,6 @@ Visualizations
 * Revenue by Product Category
 * Top Performing Categories
 
-Business Questions
-
-* Which states generate the highest revenue?
-* Which product categories contribute the most sales?
-* How has revenue evolved over time?
-* What is the average customer spend?
-
 ⸻
 
 📈 Dashboard 2 – Customer Funnel Analytics
@@ -89,13 +82,6 @@ Visualizations
 * Conversion by Lead Source
 * Lead Quality Distribution
 
-Business Questions
-
-* Where are potential customers dropping off?
-* Which acquisition channels perform best?
-* How efficient is the conversion funnel?
-* Which months achieve the highest conversion rates?
-
 ⸻
 
 💳 Dashboard 3 – Payment Analytics
@@ -113,12 +99,6 @@ Visualizations
 * Installment Distribution
 * Revenue by Payment Type
 * Monthly Payment Trend
-
-Business Questions
-
-* Which payment methods are most popular?
-* Do installment purchases generate higher revenue?
-* How do payment preferences change over time?
 
 ⸻
 
